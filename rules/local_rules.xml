@@ -1,0 +1,36 @@
+<!-- Local rules - Wazuh Homelab -->
+
+<group name="local,syslog,sshd,">
+  <rule id="100001" level="5">
+    <if_sid>5716</if_sid>
+    <srcip>1.1.1.1</srcip>
+    <description>sshd: authentication failed from IP 1.1.1.1.</description>
+    <group>authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,</group>
+  </rule>
+</group>
+
+<!-- Custom rule 1: Brute force detectie -->
+<group name="local,windows,authentication_failed,">
+  <rule id="100002" level="12" frequency="3" timeframe="300">
+    <if_matched_group>authentication_failed</if_matched_group>
+    <description>Brute force aanval gedetecteerd - meer dan 3 logon failures in 5 minuten</description>
+    <options>no_full_log</options>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>brute_force,pci_dss_10.2.4,pci_dss_10.2.5,</group>
+  </rule>
+</group>
+
+<!-- Custom rule 2: Mimikatz detectie -->
+<group name="local,windows,malware,">
+  <rule id="100003" level="15">
+    <if_sid>62110</if_sid>
+    <match>Mimikatz</match>
+    <description>KRITIEK: Mimikatz credential dumping tool gedetecteerd op endpoint</description>
+    <mitre>
+      <id>T1003</id>
+    </mitre>
+    <group>credential_dumping,pci_dss_10.6.1,</group>
+  </rule>
+</group>
