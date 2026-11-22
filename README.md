@@ -100,8 +100,8 @@ This lab simulates a real-world SOC environment where attacks are launched from 
 
 ## Author
 
-**Stefano** — Cybersecurity Student  
-[GitHub](https://github.com/STongeren)
+**Stefano van Tongeren** — Cyber Security student, Hogeschool van Amsterdam  
+[GitHub](https://github.com/STongeren) · [LinkedIn](https://www.linkedin.com/in/stongeren/)
 
 > *Built entirely from scratch as a self-learning project to develop practical SOC analyst skills.*
 
